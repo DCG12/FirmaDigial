@@ -20,8 +20,8 @@ public class Main {
 
         File f = new File(FITXER_PLA);
 
-        if(!Utils.areKeysPresent()){
-            keyPair = Utils.generateKey();
+        if(!com.company.Utils.areKeysPresent()){
+            keyPair = com.company.Utils.generatekey();
             prik = keyPair.getPrivate();
         }else{
             ObjectInputStream inputStream = null;
@@ -29,11 +29,11 @@ public class Main {
             prik = (PrivateKey) inputStream.readObject();
         }
 
-        byte[] digestionat = Utils.digestiona(f,"MD5");
-        byte[] encryptdigestionat = Utils.signar(digestionat,prik);
+        byte[] digestionat = com.company.Utils.digestiona(f,"MD5");
+        byte[] encryptdigestionat = com.company.Utils.signar(digestionat,prik);
         System.out.println("Longitud del fitxer: "+f.length());
         System.out.println("Longitud de la firma: "+encryptdigestionat.length);
-        Utils.write(FITXER_SIGNAT,Utils.concatenateByteArrays(Utils.read(f),encryptdigestionat));
+        com.company.Utils.write(FITXER_SIGNAT,com.company.Utils.concatenateByteArrays(com.company.Utils.read(f),encryptdigestionat));
 
     }
 }

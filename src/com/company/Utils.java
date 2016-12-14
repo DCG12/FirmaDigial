@@ -3,10 +3,7 @@ package com.company;
 
 import java.io.*;
 import java.math.BigInteger;
-import java.security.KeyPair;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
+import java.security.*;
 
 public class Utils {
     public static void main(String[] args){
@@ -22,31 +19,20 @@ public class Utils {
        else{
            return false;
        }
-
    }
 
     public static byte[] digestiona(File f, String algoritme) throws NoSuchAlgorithmException, IOException {
         MessageDigest digest = MessageDigest.getInstance("MD5");
         f = new File("F1.pdf");
-        InputStream is = new FileInputStream(f);
-        byte[] buffer = new byte[(int) f.length()];
-        int read = 0;
-        while ((read = is.read(buffer)) > 0)
-        {
-            digest.update(buffer, 0, read);
-        }
-
-        byte[] md5sum = digest.digest();
-        BigInteger bigInt = new BigInteger(1, md5sum);
-        String output = bigInt.toString(16);
-        is.close();
         return new byte[0];
     }
 
     public static KeyPair generatekey(){
-
-
-        return null;
+        KeyPairGenerator keyGen = null;
+        KeyPair pair = keyGen.generateKeyPair();
+        PrivateKey priv = pair.getPrivate();
+        PublicKey pub = pair.getPublic();
+        return pair;
     }
 
     public static byte[] signar(byte[] text, PrivateKey Key){
@@ -54,4 +40,15 @@ public class Utils {
         return new byte[0];
     }
 
+    public static void concatenateByteArrays(byte[] encryptdigestionat){
+
+    }
+
+    public static void read(File f){
+
+    }
+
+    public static void write(String fitxerSignat){
+
+    }
 }
